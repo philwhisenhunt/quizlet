@@ -57,8 +57,18 @@ class QuestionsController < ApplicationController
   end
 
   def check_answer
+    byebug
+    attempt = params[:question][:attempt]
     if @question.check_answer(attempt)
-      format.html { redirect_to @question, notice: "Question was successfully attempted." }
+      respond_to do |format|
+        format.html { redirect_to @question, notice: "Question was successfully attempted." }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to @question, notice: "Question was answered incorrectly." }
+        format.json { head :no_content }
+      end
     end
   end
 

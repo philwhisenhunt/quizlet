@@ -1,7 +1,8 @@
 class Question < ApplicationRecord
 
     def check_answer(attempt)
-        if attempt == @question.answer
+       
+        if attempt == self.answer
             true 
         else
             false
