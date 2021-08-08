@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: %i[ show edit update destroy ]
+  before_action :set_question, only: %i[ show edit update destroy check_answer]
 
   # GET /questions or /questions.json
   def index
@@ -56,6 +56,12 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def check_answer
+    if @question.check_answer(attempt)
+      format.html { redirect_to @question, notice: "Question was successfully attempted." }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question
@@ -64,6 +70,6 @@ class QuestionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def question_params
-      params.require(:question).permit(:title, :answer)
+      params.require(:question).permit(:title, :answer, :attempt)
     end
 end
