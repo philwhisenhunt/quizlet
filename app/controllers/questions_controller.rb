@@ -57,7 +57,7 @@ class QuestionsController < ApplicationController
   end
 
   def check_answer
-    byebug
+    # byebug
     attempt = params[:question][:attempt]
     if @question.check_answer(attempt) == true
       respond_to do |format|
