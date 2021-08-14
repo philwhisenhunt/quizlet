@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: %i[ show edit update destroy check_answer]
+  before_action :set_up_first_and_next_question, only: %i[show check_answer]
 
   # GET /questions or /questions.json
   def index
@@ -59,9 +60,9 @@ class QuestionsController < ApplicationController
   def check_answer
     # byebug
     attempt = params[:question][:attempt]
-    if @question.check_answer(attempt) == true
+    if @display_question.check_answer(attempt) == true
       respond_to do |format|
-        format.html { redirect_to @question, notice: "Correct!" }
+        format.html { redirect_to @queued_question, notice: "Correct!" }
         format.json { head :no_content }
       end
     else
@@ -76,6 +77,11 @@ class QuestionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_question
       @question = Question.find(params[:id])
+    end
+
+    def set_up_first_and_next_question
+      @display_question = Question.where(answered: false).first
+      @queued_question = Question.where(answered: false).second
     end
 
     # Only allow a list of trusted parameters through.
