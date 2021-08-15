@@ -2,7 +2,7 @@
 
 <p>
   <strong>Title:</strong>
-  <%= @display_question.title %>
+  <%= @display_question.title  if @display_question.exists?%>
 </p>
 
 
