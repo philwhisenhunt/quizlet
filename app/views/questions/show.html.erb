@@ -5,6 +5,6 @@
   <%= @display_question.title  if @display_question.exists?%>
 </p>
 
-
-<%= render 'answer_form', question: @display_question %>
-
+<% if @display_question.exists? %>
+  <%= render 'answer_form', question: @display_question %>
+<% end %>
