@@ -8,6 +8,7 @@
 <% if @display_question.exists? %>
   <%= render 'answer_form', question: @display_question %>
 <% else %>
+  <%= render "all_questions_answered" %>
 //Add alternative if all questions answered here
 
 <% end %>
