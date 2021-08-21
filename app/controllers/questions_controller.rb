@@ -73,6 +73,13 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def end_of_quiz
+    respond_to do |format|
+      format.html { redirect_to @question, notice: "Question was answered incorrectly." }
+      render 'questions/_all_questions_answered'
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question
