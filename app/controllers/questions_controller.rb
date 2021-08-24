@@ -61,13 +61,14 @@ class QuestionsController < ApplicationController
     # byebug
     attempt = params[:question][:attempt]
     if @display_question.check_answer(attempt) == true
+      @display_question.mark_as_answered
       respond_to do |format|
         format.html { redirect_to @queued_question, notice: "Correct!" }
         format.json { head :no_content }
       end
     else
       respond_to do |format|
-        format.html { redirect_to @question, notice: "Question was answered incorrectly." }
+        format.html { redirect_to @display_question, notice: "Question was answered incorrectly." }
         format.json { head :no_content }
       end
     end
