@@ -63,8 +63,13 @@ class QuestionsController < ApplicationController
     if @display_question.check_answer(attempt) == true
       @display_question.mark_as_answered
       respond_to do |format|
-        format.html { redirect_to @queued_question, notice: "Correct!" }
-        format.json { head :no_content }
+        if @queued_question 
+          format.html { redirect_to @queued_question, notice: "Correct!" }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to "questions/all_questions_answered", notice: "Correct!" }
+          format.json { head :no_content }
+        end
       end
     else
       respond_to do |format|
