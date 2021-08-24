@@ -2,10 +2,10 @@
 
 <p>
   <strong>Title:</strong>
-  <%= @display_question.title  if @display_question.exists?%>
+  <%= @display_question.title  if @display_question.present? %>
 </p>
 
-<% if @display_question.exists? %>
+<% if @display_question.present? %>
   <%= render 'answer_form', question: @display_question %>
 <% else %>
   <%= render "all_questions_answered" %>
