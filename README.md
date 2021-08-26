@@ -6,4 +6,4 @@
 
 ## Visit:
 
-[localhost:3000](https://duckduckgo.com)
+[localhost:3000](http://localhost:3000/)
