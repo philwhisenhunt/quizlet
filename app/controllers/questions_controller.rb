@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: %i[ show edit update destroy check_answer]
-  before_action :set_up_first_and_next_question, only: %i[show check_answer]
+  before_action :set_up_first_and_next_question, only: %i[show check_answer beginning_of_quiz]
 
   # GET /questions or /questions.json
   def index
@@ -83,6 +83,16 @@ class QuestionsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @question, notice: "Question was answered incorrectly." }
       render 'questions/_all_questions_answered'
+    end
+  end
+
+  def beginning_of_quiz
+  end
+
+  def reset
+    @questions = Question.all
+    @questions.each do |question| 
+      question.mark_as_unanswered
     end
   end
 
