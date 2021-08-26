@@ -64,14 +64,16 @@ class QuestionsController < ApplicationController
       @display_question.mark_as_answered
       respond_to do |format|
         if @queued_question 
-          format.html { redirect_to @queued_question, notice: "Correct!" }
+          byebug
+          format.html { redirect_to start_path, notice: "Correct!" }
           format.json { head :no_content }
         else
-          format.html { redirect_to "questions/all_questions_answered", notice: "Correct!" }
+          format.html { render "questions/_all_questions_answered", notice: "Correct!" }
           format.json { head :no_content }
         end
       end
     else
+      byebug
       respond_to do |format|
         format.html { redirect_to @display_question, notice: "Question was answered incorrectly." }
         format.json { head :no_content }
