@@ -2,8 +2,8 @@
 
 ## To run:
 
-rails s
+    rails s
 
-## visit:
+## Visit:
 
-localhost:3000
+[localhost:3000](https://duckduckgo.com)
