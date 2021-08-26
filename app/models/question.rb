@@ -14,4 +14,9 @@ class Question < ApplicationRecord
         self.answered = true
         self.save
     end
+
+    def mark_as_unanswered
+        self.answered = false
+        self.save
+    end
 end
