@@ -8,6 +8,7 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/1 or /quizzes/1.json
   def show
+    @questions = Question.all
   end
 
   # GET /quizzes/new
@@ -59,7 +60,7 @@ class QuizzesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz
-      @quiz = Quiz.find(params[:id])
+      # @quiz = Quiz.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
