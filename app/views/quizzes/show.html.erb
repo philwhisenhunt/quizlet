@@ -1,5 +1,6 @@
 Quiz!
 
 <% @questions.each do |question| %>
-  <%= question.title %>
+  <%= render 'questions/answer_form', question: question %>
+
   <% end %>
