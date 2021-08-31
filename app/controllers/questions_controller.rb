@@ -58,7 +58,7 @@ class QuestionsController < ApplicationController
   end
 
   def check_answer
-    # byebug
+    byebug
     attempt = params[:question][:attempt]
     if @display_question.check_answer(attempt) == true
       @display_question.mark_as_answered
