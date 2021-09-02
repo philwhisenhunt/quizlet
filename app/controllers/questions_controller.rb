@@ -58,7 +58,7 @@ class QuestionsController < ApplicationController
   end
 
   def check_answer
-    byebug
+    # byebug
     attempt = params[:question][:attempt]
     if @display_question.check_answer(attempt) == true
       @display_question.mark_as_answered
@@ -68,12 +68,12 @@ class QuestionsController < ApplicationController
           format.html { redirect_to start_path, notice: "Correct!" }
           format.json { head :no_content }
         else
-          format.html { render "quizzes/_all_questions_answered", notice: "Correct!" }
+          format.html { redirect_to start_path, notice: "Correct!" }
           format.json { head :no_content }
         end
       end
     else
-      byebug
+      # byebug
       respond_to do |format|
         format.html { redirect_to @display_question, notice: "Question was answered incorrectly." }
         format.json { head :no_content }
