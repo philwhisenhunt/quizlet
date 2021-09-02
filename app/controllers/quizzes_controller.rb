@@ -8,7 +8,8 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/1 or /quizzes/1.json
   def show
-    @questions = Question.all
+    @questions = Question.where(answered: false)
+    byebug
   end
 
   # GET /quizzes/new
@@ -58,7 +59,7 @@ class QuizzesController < ApplicationController
   end
 
   def check_answers
-    byebug
+    # byebug
     attempt = params[:question][:attempt]
     if @display_question.check_answer(attempt) == true
       @display_question.mark_as_answered
@@ -73,7 +74,7 @@ class QuizzesController < ApplicationController
         end
       end
     else
-      byebug
+      # byebug
       respond_to do |format|
         format.html { redirect_to @display_question, notice: "Question was answered incorrectly." }
         format.json { head :no_content }
