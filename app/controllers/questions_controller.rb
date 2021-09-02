@@ -74,7 +74,7 @@ class QuestionsController < ApplicationController
     else
 
       respond_to do |format|
-        format.html { redirect_to @display_question, notice: "Question was answered incorrectly." }
+        format.html { redirect_to start_path, notice: "Question was answered incorrectly." }
         format.json { head :no_content }
       end
     end

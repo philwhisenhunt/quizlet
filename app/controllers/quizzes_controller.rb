@@ -58,30 +58,6 @@ class QuizzesController < ApplicationController
     end
   end
 
-  def check_answers
-   
-    attempt = params[:question][:attempt]
-    if @display_question.check_answer(attempt) == true
-      @display_question.mark_as_answered
-      respond_to do |format|
-        if @queued_question 
-         
-          format.html { redirect_to start_path, notice: "Correct!" }
-          format.json { head :no_content }
-        else
-          format.html { render "quizzes/_all_questions_answered", notice: "Correct!" }
-          format.json { head :no_content }
-        end
-      end
-    else
-     
-      respond_to do |format|
-        format.html { redirect_to @display_question, notice: "Question was answered incorrectly." }
-        format.json { head :no_content }
-      end
-    end
-  end
-
   def start
   end
 
