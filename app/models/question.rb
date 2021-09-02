@@ -10,7 +10,7 @@ class Question < ApplicationRecord
     end
 
     def mark_as_answered
-        # byebug
+      
         self.answered = true
         self.save
     end

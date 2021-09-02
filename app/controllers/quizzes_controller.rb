@@ -9,7 +9,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1 or /quizzes/1.json
   def show
     @questions = Question.where(answered: false)
-    byebug
+    
   end
 
   # GET /quizzes/new
