@@ -59,13 +59,13 @@ class QuizzesController < ApplicationController
   end
 
   def check_answers
-    byebug
+    # byebug
     attempt = params[:question][:attempt]
     if @display_question.check_answer(attempt) == true
       @display_question.mark_as_answered
       respond_to do |format|
         if @queued_question 
-          byebug
+          # byebug
           format.html { redirect_to start_path, notice: "Correct!" }
           format.json { head :no_content }
         else
