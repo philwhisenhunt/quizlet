@@ -1,6 +1,6 @@
 class QuizzesController < ApplicationController
   before_action :set_quiz, only: %i[ show edit update destroy ]
-
+  before_action :set_up_first_and_next_question, only: %i[show check_answer start]
   # GET /quizzes or /quizzes.json
   def index
     @quizzes = Quiz.all
@@ -59,7 +59,7 @@ class QuizzesController < ApplicationController
   end
 
   def check_answers
-    # byebug
+    byebug
     attempt = params[:question][:attempt]
     if @display_question.check_answer(attempt) == true
       @display_question.mark_as_answered
@@ -69,7 +69,7 @@ class QuizzesController < ApplicationController
           format.html { redirect_to start_path, notice: "Correct!" }
           format.json { head :no_content }
         else
-          format.html { render "questions/_all_questions_answered", notice: "Correct!" }
+          format.html { render "quizzes/_all_questions_answered", notice: "Correct!" }
           format.json { head :no_content }
         end
       end
@@ -82,10 +82,18 @@ class QuizzesController < ApplicationController
     end
   end
 
+  def start
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz
       # @quiz = Quiz.find(params[:id])
+    end
+
+    def set_up_first_and_next_question
+      @display_question = Question.where(answered: false).first
+      @queued_question = Question.where(answered: false).second
     end
 
     # Only allow a list of trusted parameters through.
