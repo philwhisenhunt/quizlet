@@ -19,4 +19,8 @@ class Question < ApplicationRecord
         self.answered = false
         self.save
     end
+
+    def intro_new_quiz
+        
+    end
 end
