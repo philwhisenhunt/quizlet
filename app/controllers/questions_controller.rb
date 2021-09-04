@@ -81,10 +81,6 @@ class QuestionsController < ApplicationController
   end
 
   def end_of_quiz
-    respond_to do |format|
-      format.html { redirect_to @question, notice: "Question was answered incorrectly." }
-      render 'questions/_all_questions_answered'
-    end
   end
 
   def beginning_of_quiz
