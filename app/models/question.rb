@@ -20,7 +20,5 @@ class Question < ApplicationRecord
         self.save
     end
 
-    def intro_new_quiz
-        
-    end
+   
 end

@@ -8,7 +8,8 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/1 or /quizzes/1.json
   def show
-    @questions = Question.where(answered: false)
+    @questions = Question.all
+    intro_new_quiz(@questions)
     
   end
 
@@ -76,4 +77,10 @@ class QuizzesController < ApplicationController
     def quiz_params
       params.require(:quiz).permit(:name, :difficulty)
     end
+
+    def intro_new_quiz(questions)
+      questions.each do |question|
+          question.mark_as_answered
+      end
+  end
 end
