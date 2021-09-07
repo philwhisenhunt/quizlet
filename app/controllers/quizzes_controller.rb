@@ -1,5 +1,6 @@
 class QuizzesController < ApplicationController
   before_action :set_quiz, only: %i[ show edit update destroy ]
+  before_action :set_questions, only: %i[show check_answer start]
   before_action :set_up_first_and_next_question, only: %i[show check_answer start]
   # GET /quizzes or /quizzes.json
   def index
@@ -8,7 +9,7 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/1 or /quizzes/1.json
   def show
-    @questions = Question.all
+    
     intro_new_quiz(@questions)
     
   end
@@ -68,9 +69,17 @@ class QuizzesController < ApplicationController
       # @quiz = Quiz.find(params[:id])
     end
 
+    def set_questions
+      if @questions
+        @questions = @questions.where(answered: false)
+      else
+      @questions = Question.all
+      end
+    end
+
     def set_up_first_and_next_question
-      @display_question = Question.where(answered: false).first
-      @queued_question = Question.where(answered: false).second
+      @display_question = @questions.where(answered: false).first
+      @queued_question = @questions.where(answered: false).second
     end
 
     # Only allow a list of trusted parameters through.

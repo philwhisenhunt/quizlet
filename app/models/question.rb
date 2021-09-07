@@ -12,12 +12,12 @@ class Question < ApplicationRecord
     def mark_as_answered
       
         self.answered = true
-        self.save
+        # self.save
     end
 
     def mark_as_unanswered
         self.answered = false
-        self.save
+        # self.save
     end
 
    
