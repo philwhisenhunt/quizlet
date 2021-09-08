@@ -70,6 +70,8 @@ class QuizzesController < ApplicationController
     end
 
     def set_questions
+      byebug
+      #How to make @questions available here?
       if @questions
         @questions = @questions.where(answered: false)
       else
