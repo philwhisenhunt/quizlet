@@ -66,6 +66,7 @@ class QuestionsController < ApplicationController
     
           format.html { redirect_to start_path, notice: "Correct!" }
           format.json { head :no_content }
+          byebug
         else
           format.html { redirect_to start_path, notice: "Correct!" }
           format.json { head :no_content }
