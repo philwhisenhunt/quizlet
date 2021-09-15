@@ -20,5 +20,9 @@ class Question < ApplicationRecord
         self.save
     end
 
+    def correct_answer
+        self.answer
+    end
+
    
 end
