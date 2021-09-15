@@ -9,7 +9,7 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/1 or /quizzes/1.json
   def show
-    
+    @questions = Question.all
     intro_new_quiz(@questions)
     
   end
@@ -61,7 +61,7 @@ class QuizzesController < ApplicationController
   end
 
   def start
-    # byebug
+  
     @questions = Question.all
     @display_question = @questions.where(answered: false).first
   end
@@ -72,22 +72,6 @@ class QuizzesController < ApplicationController
       # @quiz = Quiz.find(params[:id])
     end
 
-    def set_questions
-      
-      #How to make @questions available here?
-      byebug
-      if @questions
-        @questions = @questions.where(answered: false)
-      else
-      @questions = Question.all
-      end
-    end
-
-    def set_up_first_and_next_question
-      @display_question = @questions.where(answered: false).first
-      @queued_question = @questions.where(answered: false).second
-      # byebug # count is the same each time
-    end
 
     # Only allow a list of trusted parameters through.
     def quiz_params
