@@ -12,7 +12,7 @@ class Question < ApplicationRecord
     end
 
     def mark_as_answered
-      
+      byebug # we are failing here because quizzes question must exist
         self.answered = true
         self.save
     end

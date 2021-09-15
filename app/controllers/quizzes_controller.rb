@@ -63,7 +63,7 @@ class QuizzesController < ApplicationController
   end
 
   def start
-  
+  # byebug
     @questions = Question.all
     @display_question = @questions.where(answered: false).first
   end

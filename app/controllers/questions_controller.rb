@@ -63,6 +63,7 @@ class QuestionsController < ApplicationController
     attempted_answer = AttemptedAnswer.new(attempted_answer: attempt)
     # byebug
     if @display_question.check_answer(attempt) == true
+      # byebug 
       attempted_answer.correct_answer = true
       @display_question.mark_as_answered
       respond_to do |format|
