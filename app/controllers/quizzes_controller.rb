@@ -9,10 +9,10 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/1 or /quizzes/1.json
   def show
-    @questions = Question.all
-    intro_new_quiz(@questions)
-    @display_question = @questions.where(answered: false).first
-    byebug
+    @quiz_questions = Question.all
+    intro_new_quiz(@quiz_questions)
+    @display_question = @quiz_questions.where(answered: false).first
+    # byebug
     
   end
 
