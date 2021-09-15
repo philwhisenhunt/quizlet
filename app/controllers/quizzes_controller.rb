@@ -68,6 +68,13 @@ class QuizzesController < ApplicationController
     @display_question = @questions.where(answered: false).first
   end
 
+  def reset
+    @questions = Question.all
+    @questions.each do |question| 
+      question.mark_as_unanswered
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz

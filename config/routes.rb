@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   root :to => "home#index"
   post "questions/:id", to: "questions#check_answer"
   get 'start', to: "quizzes#start"
-  get 'reset', to: "questions#reset"
+  get 'reset', to: "quizzes#reset"
 end
