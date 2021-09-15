@@ -1,7 +1,7 @@
 class QuizzesController < ApplicationController
   before_action :set_quiz, only: %i[ show edit update destroy ]
-  before_action :set_questions, only: %i[show check_answer start]
-  before_action :set_up_first_and_next_question, only: %i[show check_answer start]
+  # before_action :set_questions, only: %i[show check_answer start]
+  # before_action :set_up_first_and_next_question, only: %i[show check_answer start]
   # GET /quizzes or /quizzes.json
   def index
     @quizzes = Quiz.all
@@ -62,6 +62,8 @@ class QuizzesController < ApplicationController
 
   def start
     # byebug
+    @questions = Question.all
+    @display_question = @questions.where(answered: false).first
   end
 
   private
