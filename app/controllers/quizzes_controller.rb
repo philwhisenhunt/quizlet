@@ -11,6 +11,8 @@ class QuizzesController < ApplicationController
   def show
     @questions = Question.all
     intro_new_quiz(@questions)
+    @display_question = @questions.where(answered: false).first
+    byebug
     
   end
 
@@ -80,7 +82,7 @@ class QuizzesController < ApplicationController
 
     def intro_new_quiz(questions)
       questions.each do |question|
-          question.mark_as_answered
+          question.mark_as_unanswered
       end
   end
 end
