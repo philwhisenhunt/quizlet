@@ -1,5 +1,7 @@
 class Question < ApplicationRecord
-    # belongs_to :quiz
+    
+    belongs_to :quizzes_question
+    has_many :quizzes, through: :quizzes_question
     def check_answer(attempt)
        
         if attempt == self.answer
