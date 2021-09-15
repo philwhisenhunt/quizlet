@@ -61,6 +61,7 @@ class QuizzesController < ApplicationController
   end
 
   def start
+    # byebug
   end
 
   private
@@ -70,8 +71,9 @@ class QuizzesController < ApplicationController
     end
 
     def set_questions
-      # byebug
+      
       #How to make @questions available here?
+      byebug
       if @questions
         @questions = @questions.where(answered: false)
       else
@@ -82,7 +84,7 @@ class QuizzesController < ApplicationController
     def set_up_first_and_next_question
       @display_question = @questions.where(answered: false).first
       @queued_question = @questions.where(answered: false).second
-      byebug # count is the same each time
+      # byebug # count is the same each time
     end
 
     # Only allow a list of trusted parameters through.
