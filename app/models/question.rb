@@ -1,7 +1,7 @@
 class Question < ApplicationRecord
     
-    belongs_to :quizzes_question
-    has_many :quizzes, through: :quizzes_question
+    # belongs_to :quizzes_question
+    # has_many :quizzes, through: :quizzes_question
     def check_answer(attempt)
        
         if attempt == self.answer
@@ -12,7 +12,8 @@ class Question < ApplicationRecord
     end
 
     def mark_as_answered
-      byebug # we are failing here because quizzes question must exist
+    #   byebug # we are failing here because quizzes question must exist
+    #cant create qq without quiz, can't create quiz without qq
         self.answered = true
         self.save
     end
