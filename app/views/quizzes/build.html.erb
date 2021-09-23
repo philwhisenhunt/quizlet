@@ -1,13 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>@quiz.name</h1>
+<h1><%= @quiz.name %></h1>
 
 <table>
   <thead>
     <tr>
+    <% if @questions.present? %>
       <th>Title</th>
       <th>Answer</th>
       <th colspan="3"></th>
+    <% end %>
     </tr>
   </thead>
 
