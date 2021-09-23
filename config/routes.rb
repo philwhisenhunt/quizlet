@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   post "questions/:id", to: "questions#check_answer"
   get 'start', to: "quizzes#start"
   get 'reset', to: "quizzes#reset"
-  get "quizzes/:id/build", to: "quizzes#build", as: "build"
+  get "quizzes/:id/build", to: "quizzes#build", as: "build_quiz"
 end
