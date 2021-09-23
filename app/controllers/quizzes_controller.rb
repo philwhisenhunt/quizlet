@@ -9,10 +9,13 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/1 or /quizzes/1.json
   def show
-    @quiz_questions = Question.all
-    intro_new_quiz(@quiz_questions)
-    @display_question = @quiz_questions.where(answered: false).first
-    # byebug
+    # @quiz_questions = Question.all
+    if @quiz_questions.present?
+      intro_new_quiz(@quiz_questions)
+      @display_question = @quiz_questions.where(answered: false).first
+    else
+      redirect_to build_quiz_path
+    end
     
   end
 
@@ -83,7 +86,7 @@ class QuizzesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz
-      # @quiz = Quiz.find(params[:id])
+      @quiz = Quiz.find(params[:id])
     end
 
 
