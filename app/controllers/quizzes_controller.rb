@@ -76,6 +76,7 @@ class QuizzesController < ApplicationController
   end
 
   def build
+    @quiz = Quiz.find(params[:id])
     @questions = @quiz.questions.all
   end
 
