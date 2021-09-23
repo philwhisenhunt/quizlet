@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'home/index'
   root :to => "home#index"
   post "questions/:id", to: "questions#check_answer"
-  get 'start', to: "quizzes#start"
+  get 'quizzes/:id/start', to: "quizzes#start", as: "start"
   get 'reset', to: "quizzes#reset"
   get "quizzes/:id/build", to: "quizzes#build", as: "build_quiz"
 end
