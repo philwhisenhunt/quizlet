@@ -82,6 +82,9 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.find(params[:id])
   end
 
+  def complete
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz

@@ -73,7 +73,9 @@ class QuestionsController < ApplicationController
           format.json { head :no_content }
           # byebug
         else
-          format.html { redirect_to start_path, notice: "Correct!" }
+          # byebug #redirect to end of path
+          
+          format.html { redirect_to quizzes_complete_path, notice: "Correct!" }
           format.json { head :no_content }
         end
       end
