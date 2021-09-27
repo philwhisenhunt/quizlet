@@ -83,6 +83,8 @@ class QuizzesController < ApplicationController
   end
 
   def complete
+    #grab users score from that round
+    @score = 12 # placeholder for now
   end
 
   private
