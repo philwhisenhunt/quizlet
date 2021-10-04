@@ -9,7 +9,7 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/1 or /quizzes/1.json
   def show
-    # @quiz_questions = Question.all
+    @quiz_questions = Question.all
     if @quiz_questions.present?
       intro_new_quiz(@quiz_questions)
       @display_question = @quiz_questions.where(answered: false).first
