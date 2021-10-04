@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @display_question.title  if @display_question.present? %>
+  <strong>
+    <%= @display_question.title  if @display_question.present? %>
+  </strong>
 </p>
 
 <% if @display_question.present? %>
