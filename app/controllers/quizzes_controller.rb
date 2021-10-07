@@ -91,10 +91,9 @@ class QuizzesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz
-      # byebug
-      # if Quiz.find(params[:id]).present?
-        @quiz = Quiz.find(params[:id]) if params[:id].present?
-      # end
+   
+        @quiz = Quiz.first
+      
     end
 
     def set_questions

@@ -68,25 +68,28 @@ class QuestionsController < ApplicationController
       @display_question.mark_as_answered
       respond_to do |format|
         if @queued_question 
-    
+          attempted_answer.save
+
           format.html { redirect_to start_path, notice: "Correct!" }
           format.json { head :no_content }
           # byebug
         else
           # byebug #redirect to end of path
-          
+          attempted_answer.save
+
           format.html { redirect_to complete_path, notice: "Correct!" }
           format.json { head :no_content }
         end
       end
     else
       attempted_answer.correct_answer = false
+      attempted_answer.save
+
       respond_to do |format|
         format.html { redirect_to start_path, notice: "Question was answered incorrectly." }
         format.json { head :no_content }
       end
     end
-    attempted_answer.save
   end
 
   def end_of_quiz
