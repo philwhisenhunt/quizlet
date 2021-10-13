@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # resources :quizzes
+  resources :quizzes
   resources :questions
   get 'home/index'
   root :to => "home#index"

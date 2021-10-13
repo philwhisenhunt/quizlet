@@ -69,7 +69,7 @@ class QuestionsController < ApplicationController
       respond_to do |format|
         if @queued_question 
           attempted_answer.save
-
+# byebug
           format.html { redirect_to start_path, notice: "Correct!" }
           format.json { head :no_content }
           # byebug

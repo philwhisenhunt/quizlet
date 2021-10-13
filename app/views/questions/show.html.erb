@@ -1,2 +1,6 @@
-<%= @question.title %>
-<%= @question.answer %>
+<%= @display_question.title %>
+
+<%= form_with(model: @display_question, local: true, method: :post) do |form| %>
+  <%= form.text_field :your_answer %>
+  <%= form.submit "Check Answer" %>
+<% end %>
