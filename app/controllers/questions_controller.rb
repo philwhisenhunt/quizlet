@@ -58,6 +58,7 @@ class QuestionsController < ApplicationController
   end
 
   def check_answer
+    byebug # are we here? 
     attempt = params[:question][:attempt]
     correct_answer = @display_question.correct_answer
     attempted_answer = AttemptedAnswer.new(attempted_answer: attempt)
