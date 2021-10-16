@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get "quizzes/:id/build", to: "quizzes#build", as: "build_quiz"
   get "quizzes/:id/start", to: "quizzes#start", as: "start_quiz"
   get "complete", to: "quizzes#complete"
+  get "quizzes/start/:id", to "quizzes#session", as: session
 end
