@@ -88,6 +88,11 @@ class QuizzesController < ApplicationController
     @score = 12 # placeholder for now
   end
 
+  def session
+    # Render a view that includes a question here
+    # On next load, swap in the correct question
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz
