@@ -11,6 +11,7 @@ class QuizzesController < ApplicationController
   def show
     @quiz_questions = Question.all
     # @quiz_questions = @quiz.questions.all
+    byebug # are any quiz questions false? 
     if @quiz_questions.present?
       intro_new_quiz(@quiz_questions)
       @display_question = @quiz_questions.where(answered: false).first
