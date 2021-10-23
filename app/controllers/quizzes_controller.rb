@@ -28,6 +28,7 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/1/edit
   def edit
+   byebug
   end
 
   # POST /quizzes or /quizzes.json
@@ -70,6 +71,7 @@ class QuizzesController < ApplicationController
   def start
   # byebug
     @questions = Question.all
+    byebug
     @display_question = @questions.where(answered: false).first
   end
 
