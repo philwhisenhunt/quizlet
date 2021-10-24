@@ -94,14 +94,16 @@ class QuizzesController < ApplicationController
   def session_maker
     # Render a view that includes a question here
     # On next load, swap in the correct question
+    # byebug
+    @quiz = Quiz.find(params[:id])
+
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz
    
-        @quiz = Quiz.first
-      
+      @quiz = Quiz.find(params[:id])      
     end
 
     def set_questions

@@ -1,10 +1,13 @@
-Quiz!
+Quizz!
 <hr>
+Quiz Name: <%= @quiz.name %>
+<hr>
+Here are all the questions that will be on the quiz:
 
-<% %>
-  <%= @display_question.title %>
-<% byebug %>
-  <%= form_with(model: @display_question, local: true, method: :post) do |form| %>
-    <%= form.text_field :your_answer %>
-    <%= form.submit "Check Answer" %>
-  <% end %>
+<% @quiz.questions.each do |question| %>
+  <h2>Question:</h2>
+  <%= question.title %>
+  <br>
+  Answer:<%= question.answer %>
+  <hr>
+<% end %>
