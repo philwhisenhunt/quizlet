@@ -91,7 +91,7 @@ class QuizzesController < ApplicationController
     @score = 12 # placeholder for now
   end
 
-  def session
+  def session_maker
     # Render a view that includes a question here
     # On next load, swap in the correct question
   end
