@@ -11,6 +11,7 @@ class QuizzesController < ApplicationController
   def show
     @quiz_questions = Question.all
     # @quiz_questions = @quiz.questions.all
+    # byebug # are any quiz questions false?  
     if @quiz_questions.present?
       intro_new_quiz(@quiz_questions)
       @display_question = @quiz_questions.where(answered: false).first
@@ -27,6 +28,7 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/1/edit
   def edit
+  #  byebug
   end
 
   # POST /quizzes or /quizzes.json
@@ -69,6 +71,7 @@ class QuizzesController < ApplicationController
   def start
   # byebug
     @questions = Question.all
+    # byebug
     @display_question = @questions.where(answered: false).first
   end
 
@@ -86,6 +89,11 @@ class QuizzesController < ApplicationController
   def complete
     #grab users score from that round
     @score = 12 # placeholder for now
+  end
+
+  def session_maker
+    # Render a view that includes a question here
+    # On next load, swap in the correct question
   end
 
   private
