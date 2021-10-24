@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   get "quizzes/:id/start", to: "quizzes#start", as: "start_quiz"
   get "complete", to: "quizzes#complete"
   get "quizzes/:id/session_maker", to: "quizzes#session_maker", as: "session_maker"
+  get "quizzes/:id/add_question_to_quiz", to: "quizzes#add_question_to_quiz", as: "add_question_to_quiz"
 end
