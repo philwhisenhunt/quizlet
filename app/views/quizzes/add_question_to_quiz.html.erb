@@ -25,9 +25,10 @@ Add a form here:
       <%= form.label :answer %>
       <%= form.text_field :answer %>
     </div>
-    <% form.label :quiz_id %>
-    <% form.text_field @quiz.id %>
-  
+    <div class="field">
+      <%= form.label :quiz_id %>
+      <%= form.text_field :quiz_id %>
+    </div>
     <div class="actions">
       <%= form.submit %>
     </div>
