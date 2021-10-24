@@ -96,6 +96,7 @@ class QuizzesController < ApplicationController
     # On next load, swap in the correct question
     # byebug
     @quiz = Quiz.find(params[:id])
+    @question = @quiz.questions.where(answered: false).first
 
   end
 
