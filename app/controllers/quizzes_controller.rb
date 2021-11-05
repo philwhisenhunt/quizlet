@@ -109,6 +109,8 @@ class QuizzesController < ApplicationController
   def handle_answer
     byebug
     @attempted_answer = params[:attempted_answer]
+    @question = @quiz.questions.where(answered: false).first
+
   end
   private
     # Use callbacks to share common setup or constraints between actions.
