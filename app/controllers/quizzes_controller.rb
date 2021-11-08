@@ -83,6 +83,7 @@ class QuizzesController < ApplicationController
   end
 
   def build
+    // how to account for id here? 
     @quiz = Quiz.find(params[:id])
   end
 
