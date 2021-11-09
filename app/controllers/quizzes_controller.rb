@@ -104,6 +104,7 @@ class QuizzesController < ApplicationController
   def add_question_to_quiz
     @quiz = Quiz.find(params[:id])
     @question = @quiz.questions.new
+    # And now prep for receiving a question (for POST requests)
 
   end
 
