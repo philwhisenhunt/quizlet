@@ -109,7 +109,8 @@ class QuizzesController < ApplicationController
   end
 
   def receive_question
-    @question = @quiz.questions.new
+    @question = @quiz.questions.new(questions_params)
+  
     @question.answer = params[:answer]
   end
 
