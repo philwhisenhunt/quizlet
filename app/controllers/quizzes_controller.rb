@@ -105,7 +105,9 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.find(params[:id])
     @question = @quiz.questions.new
     # And now prep for receiving a question (for POST requests)
-
+    if @question.save
+      # add in redirect
+    end
   end
 
   def receive_question
