@@ -108,6 +108,11 @@ class QuizzesController < ApplicationController
 
   end
 
+  def receive_question
+    @question = @quiz.questions.new
+    @question.answer = params[:answer]
+  end
+
   def handle_answer
     byebug
     @attempted_answer = params[:attempted_answer]
