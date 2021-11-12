@@ -107,6 +107,7 @@ class QuizzesController < ApplicationController
     # And now prep for receiving a question (for POST requests)
     if @question.save
       # add in redirect
+      format.html { redirect_to quiz_path(@quiz), notice: "Question was successfully created under #{@quiz.name}"}
     end
   end
 
