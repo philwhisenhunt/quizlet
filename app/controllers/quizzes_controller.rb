@@ -108,6 +108,8 @@ class QuizzesController < ApplicationController
     if @question.save
       # add in redirect
       format.html { redirect_to quiz_path(@quiz), notice: "Question was successfully created under #{@quiz.name}"}
+    else
+      format.html {render :edit, status :unprocessable_entity }
     end
   end
 
