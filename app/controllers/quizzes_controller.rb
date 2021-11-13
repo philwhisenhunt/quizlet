@@ -104,19 +104,21 @@ class QuizzesController < ApplicationController
   def add_question_to_quiz
     @quiz = Quiz.find(params[:id])
     @question = @quiz.questions.new(question_params)
-    # And now prep for receiving a question (for POST requests)
-    if @question.save
-      # add in redirect
-      format.html { redirect_to quiz_path(@quiz), notice: "Question was successfully created under #{@quiz.name}"}
-    else
-      format.html {render :edit, status :unprocessable_entity }
-    end
+ 
   end
 
   def receive_question
     @question = @quiz.questions.new(questions_params)
   
     @question.answer = params[:answer]
+
+    # And now prep for receiving a question (for POST requests)
+    if @question.save
+    # add in redirect
+      format.html { redirect_to quiz_path(@quiz), notice: "Question was successfully created under #{@quiz.name}"}
+    else
+      format.html {render :edit, status :unprocessable_entity }
+    end
   end
 
   def handle_answer
