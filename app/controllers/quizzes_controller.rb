@@ -103,7 +103,7 @@ class QuizzesController < ApplicationController
 
   def add_question_to_quiz
     @quiz = Quiz.find(params[:id])
-    @question = @quiz.questions.new(question_params)
+    @question = @quiz.questions.new
  
   end
 
