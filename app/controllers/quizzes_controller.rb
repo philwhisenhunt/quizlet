@@ -118,7 +118,7 @@ class QuizzesController < ApplicationController
       format.html { redirect_to quiz_path(@quiz), notice: "Question was successfully created under #{@quiz.name}"}
       # format.json {render :show, status: :ok, location: @quiz}
     else
-      format.html {redirect_to quiz_path(@quiz) }
+      format.html {redirect_to quiz_path(@quiz), notice: "Question was not saved." }
      
     end
   end
