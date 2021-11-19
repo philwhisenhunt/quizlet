@@ -129,6 +129,9 @@ class QuizzesController < ApplicationController
     @attempted_answer = params[:attempted_answer]
     @question = @quiz.questions.where(answered: false).first
     # now just needs a view
+    if @attempted_answer == @question.answer
+      # account for correct answer
+    end
 
   end
   private
