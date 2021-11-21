@@ -132,6 +132,7 @@ class QuizzesController < ApplicationController
     if @attempted_answer == @question.answer
       # account for correct answer
       # mark question as correct
+      @question.answered = true
       # reload the session view (which should now pull a fresh question)
     end
 
