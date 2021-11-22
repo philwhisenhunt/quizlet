@@ -133,6 +133,7 @@ class QuizzesController < ApplicationController
       # account for correct answer
       # mark question as correct
       @question.answered = true
+      format.html { redirect_to session_maker_path(@quiz), notice: "Correct! "}
       # reload the session view (which should now pull a fresh question)
     end
 
