@@ -124,11 +124,11 @@ class QuizzesController < ApplicationController
   end
 
   def handle_answer
-    byebug
     @quiz = Quiz.find(params[:id])
-    @attempted_answer = AttemptedAnswer.new(params[:attempted_answer])
+    @attempted_answer = params[:attempted_answer]
     @question = @quiz.questions.where(answered: false).first
     # now just needs a view
+    byebug
     if @attempted_answer == @question.answer
       # account for correct answer
       # mark question as correct
