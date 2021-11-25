@@ -135,6 +135,8 @@ class QuizzesController < ApplicationController
       @question.answered = true
       format.html { redirect_to session_maker_path(@quiz), notice: "Correct! "}
       # reload the session view (which should now pull a fresh question)
+    else
+      format.html { redirect_to session_maker_path(@quiz), notice: "False! "}
     end
 
   end
