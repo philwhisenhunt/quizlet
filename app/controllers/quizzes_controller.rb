@@ -136,6 +136,10 @@ class QuizzesController < ApplicationController
       format.html { redirect_to session_maker_path(@quiz), notice: "Correct! "}
       # reload the session view (which should now pull a fresh question)
     else
+      # somehow save the attempted answer here
+      
+      @wrong_answer = AttemptedAnswer.new(question: @question.id, attempted_answer: @attempted_answer)
+      @wrong_answer.save!
       format.html { redirect_to session_maker_path(@quiz), notice: "False! "}
     end
 
