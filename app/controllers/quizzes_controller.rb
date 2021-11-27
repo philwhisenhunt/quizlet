@@ -140,7 +140,9 @@ class QuizzesController < ApplicationController
       
       @wrong_answer = AttemptedAnswer.new(question: @question.id, attempted_answer: @attempted_answer)
       @wrong_answer.save!
-      format.html { redirect_to session_maker_path(@quiz), notice: "False! "}
+      format.html { redirect_to session_maker_path(@quiz), notice: "False!"}
+      # is json required here?
+      
     end
 
   end
