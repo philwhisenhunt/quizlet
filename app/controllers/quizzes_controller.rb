@@ -141,6 +141,7 @@ class QuizzesController < ApplicationController
       @wrong_answer = AttemptedAnswer.new(question: @question.id, attempted_answer: @attempted_answer)
       @wrong_answer.save!
       format.html { redirect_to session_maker_path(@quiz), notice: "False!"}
+      format.json {render json: @question.errors, status: :cannot_process }
       # is json required here?
       
     end
