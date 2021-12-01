@@ -83,6 +83,7 @@ class QuizzesController < ApplicationController
   end
 
   def build
+    # how to account for id here? 
     @quiz = Quiz.find(params[:id])
   end
 
@@ -94,14 +95,65 @@ class QuizzesController < ApplicationController
   def session_maker
     # Render a view that includes a question here
     # On next load, swap in the correct question
+    # byebug
+    @quiz = Quiz.find(params[:id])
+    @question = @quiz.questions.where(answered: false).first
+
   end
 
+  def add_question_to_quiz
+    @quiz = Quiz.find(params[:id])
+    @question = @quiz.questions.new
+ 
+  end
+
+  def receive_question
+    @question = @quiz.questions.new(questions_params)
+  
+    @question.answer = params[:answer]
+
+    # And now prep for receiving a question (for POST requests)
+    if @question.save
+    # add in redirect
+      format.html { redirect_to quiz_path(@quiz), notice: "Question was successfully created under #{@quiz.name}"}
+      # format.json {render :show, status: :ok, location: @quiz}
+    else
+      format.html {redirect_to quiz_path(@quiz), notice: "Question was not saved." }
+     
+    end
+  end
+
+  def handle_answer
+    @quiz = Quiz.find(params[:id])
+    @attempted_answer = params[:attempted_answer]
+    @question = @quiz.questions.where(answered: false).first
+    # now just needs a view
+
+    if @attempted_answer == @question.answer
+      # account for correct answer
+      # mark question as correct
+      @question.answered = true
+      format.html { redirect_to session_maker_path(@quiz), notice: "Correct! "}
+      # reload the session view (which should now pull a fresh question)
+    else
+      # somehow save the attempted answer here
+      
+      @wrong_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer)
+      @wrong_answer.save!
+      # byebug
+      respond_to do |format|
+        format.html { redirect_to session_maker_path(@quiz), notice: "False!"}
+        format.json { render json: @question.errors, status: :unprocessable_entity }
+      end
+      
+    end
+
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz
    
-        @quiz = Quiz.first
-      
+      @quiz = Quiz.find(params[:id])      
     end
 
     def set_questions

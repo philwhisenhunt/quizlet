@@ -1,0 +1,16 @@
+<h1>Session Maker</h1>
+
+Ok first question:
+<br>
+<%= @question.title %>
+
+<%= form_with(model: @attempted_answer, local: true) do |form| %>
+    <div class="field">
+        <%= form.label :attempted_answer %>
+        <%= form.text_field :attempted_answer %>
+    </div>
+
+    <div class="actions">
+        <%= form.submit "Check Answer" %>
+    </div>
+<% end %>

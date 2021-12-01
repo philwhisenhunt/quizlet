@@ -22,11 +22,12 @@ class QuestionsController < ApplicationController
 
   # POST /questions or /questions.json
   def create
+    # byebug
     @question = Question.new(question_params)
-
+    @quiz = Quiz.find(question_params[:quiz_id])
     respond_to do |format|
       if @question.save
-        format.html { redirect_to questions_path, notice: "Question was successfully created." }
+        format.html { redirect_to quiz_path(@quiz), notice: "Question was successfully created." }
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -120,6 +121,6 @@ class QuestionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def question_params
-      params.require(:question).permit(:title, :answer, :attempt)
+      params.require(:question).permit(:title, :answer, :attempt, :quiz_id)
     end
 end
