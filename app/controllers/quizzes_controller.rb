@@ -128,7 +128,7 @@ class QuizzesController < ApplicationController
     @attempted_answer = params[:attempted_answer]
     @question = @quiz.questions.where(answered: false).first
     # now just needs a view
-    byebug
+
     if @attempted_answer == @question.answer
       # account for correct answer
       # mark question as correct
@@ -138,10 +138,13 @@ class QuizzesController < ApplicationController
     else
       # somehow save the attempted answer here
       
-      @wrong_answer = AttemptedAnswer.new(question: @question.id, attempted_answer: @attempted_answer)
+      @wrong_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer)
       @wrong_answer.save!
-      format.html { redirect_to session_maker_path(@quiz), notice: "False!"}
-      format.json { render json: @question.errors, status: :unprocessable_entity }
+      # byebug
+      respond_to do |format|
+        format.html { redirect_to session_maker_path(@quiz), notice: "False!"}
+        format.json { render json: @question.errors, status: :unprocessable_entity }
+      end
       
     end
 
