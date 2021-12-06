@@ -4,6 +4,8 @@ Ok first question:
 <br>
 <%= @question.title %>
 
+<%= render 'shared/error_messages' %>
+
 <%= form_with(model: @attempted_answer, local: true) do |form| %>
     <div class="field">
         <%= form.label :attempted_answer %>
