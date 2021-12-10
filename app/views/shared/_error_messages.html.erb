@@ -4,4 +4,10 @@
             The problem is you have <%= pluralize(object.errors.count, "error"%>.
         </div>
     </div>
+
+    <ul>
+    <% object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+    <% end %>
+    </ul>
 <% end %>
