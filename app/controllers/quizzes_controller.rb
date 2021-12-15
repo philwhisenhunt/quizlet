@@ -134,13 +134,10 @@ class QuizzesController < ApplicationController
       # mark question as correct
       @question.answered = true
       format.html { redirect_to session_maker_path(@quiz), notice: "Correct! "}
-      # reload the session view (which should now pull a fresh question)
     else
-      # somehow save the attempted answer here
-      
       @wrong_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer)
       @wrong_answer.save!
-      # byebug
+
       respond_to do |format|
         format.html { redirect_to session_maker_path(@quiz), notice: "False!"}
         format.json { render json: @question.errors, status: :unprocessable_entity }
