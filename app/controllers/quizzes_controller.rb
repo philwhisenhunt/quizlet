@@ -133,8 +133,10 @@ class QuizzesController < ApplicationController
       # account for correct answer
       # mark question as correct
       @question.answered = true
-      # byebug
-      format.html { redirect_to session_maker_path(@quiz), notice: "Correct! "}
+   
+      respond_to do |format|
+        format.html { redirect_to session_maker_path(@quiz), notice: "Correct! "}
+      end
     else
       @wrong_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer)
       @wrong_answer.save!
