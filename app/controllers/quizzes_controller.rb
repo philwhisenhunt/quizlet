@@ -132,8 +132,8 @@ class QuizzesController < ApplicationController
     if @attempted_answer == @question.answer
       # account for correct answer
       # mark question as correct
-      @question.answered = true
-   
+      @question.update(answered: true)
+      
       respond_to do |format|
         format.html { redirect_to session_maker_path(@quiz), notice: "Correct! "}
       end
