@@ -127,6 +127,10 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.find(params[:id])
     @attempted_answer = params[:attempted_answer]
     @question = @quiz.questions.where(answered: false).first
+
+    if @question.nil?
+      redirect_to completed_quiz_path
+    end
     # now just needs a view
 
     if @attempted_answer == @question.answer
