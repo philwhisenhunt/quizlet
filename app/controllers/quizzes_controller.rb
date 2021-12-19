@@ -129,7 +129,7 @@ class QuizzesController < ApplicationController
     @question = @quiz.questions.where(answered: false).first
 
     if @question.nil?
-      redirect_to completed_quiz_path
+      redirect_to completed_path
     end
     # now just needs a view
 
