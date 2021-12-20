@@ -99,6 +99,11 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.find(params[:id])
     @question = @quiz.questions.where(answered: false).first
 
+    if @question.present?
+    else
+      redirect_to complete_path
+    end
+
   end
 
   def add_question_to_quiz
