@@ -130,7 +130,7 @@ class QuizzesController < ApplicationController
 
   def handle_answer
     @quiz = Quiz.find(params[:id])
-    @attempted_answer = params[:attempted_answer]
+    @attempted_answer = params[:attempted_answer].downcase
     @question = @quiz.questions.where(answered: false).first
 
     if @question.nil?
@@ -138,7 +138,7 @@ class QuizzesController < ApplicationController
     end
     # now just needs a view
 
-    if @attempted_answer == @question.answer
+    if @attempted_answer == @question.answer.downcase
       # account for correct answer
       # mark question as correct
       @question.update(answered: true)
