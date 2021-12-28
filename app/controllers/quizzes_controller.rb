@@ -170,6 +170,9 @@ class QuizzesController < ApplicationController
 
     end
 
+    def calculate_score
+      @score = 13
+    end
 
     # Only allow a list of trusted parameters through.
     def quiz_params
