@@ -159,7 +159,7 @@ class QuizzesController < ApplicationController
     end
 
   end
-  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz
@@ -175,6 +175,7 @@ class QuizzesController < ApplicationController
     def calculate_score
       @total_questions = 13
       @number_correct = 0
+      @percentage_correct = @number_correct / @total_questions
     end
 
     # Only allow a list of trusted parameters through.
