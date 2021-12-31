@@ -136,11 +136,9 @@ class QuizzesController < ApplicationController
     if @question.nil?
       redirect_to completed_path
     end
-    # now just needs a view
 
     if @attempted_answer == @question.answer.downcase
-      # account for correct answer
-      # mark question as correct
+
       @question.update(answered: true)
       
       respond_to do |format|
@@ -161,6 +159,7 @@ class QuizzesController < ApplicationController
     end
 
   end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz
