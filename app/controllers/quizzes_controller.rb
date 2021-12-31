@@ -148,6 +148,7 @@ class QuizzesController < ApplicationController
       end
       @number_correct = @number_correct + 1
       @right_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer)
+      @right_answer.save!
     else
       @wrong_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer)
       @wrong_answer.save!
