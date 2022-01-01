@@ -173,7 +173,7 @@ class QuizzesController < ApplicationController
     end
 
     def calculate_score
-      @total_questions = 13
+      @total_questions = @quiz.questions.count
       @number_correct = 0
       @percentage_correct = @number_correct / @total_questions
     end
