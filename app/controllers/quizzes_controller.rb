@@ -80,6 +80,7 @@ class QuizzesController < ApplicationController
     @questions.each do |question| 
       question.mark_as_unanswered
     end
+    @number_correct = 0
   end
 
   def build
@@ -174,7 +175,6 @@ class QuizzesController < ApplicationController
 
     def calculate_score
       @total_questions = @quiz.questions.count
-      @number_correct = 0
       @percentage_correct = @number_correct / @total_questions
     end
 
