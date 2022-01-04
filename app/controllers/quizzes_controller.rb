@@ -165,13 +165,11 @@ class QuizzesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz
-   
       @quiz = Quiz.find(params[:id])      
     end
 
     def set_questions
       @questions = Question.where(quiz_id: @quiz.id)
-
     end
 
     def calculate_score
@@ -181,7 +179,7 @@ class QuizzesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def quiz_params
-      params.require(:quiz).permit(:name, :difficulty)
+      params.require(:quiz).permit(:name, :difficulty, :quiz_id)
     end
 
     def intro_new_quiz(questions)
