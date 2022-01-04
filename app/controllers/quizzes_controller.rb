@@ -144,6 +144,7 @@ class QuizzesController < ApplicationController
       
       respond_to do |format|
         format.html { redirect_to session_maker_path(@quiz), notice: "Correct! "}
+        # do we need json here
       end
       @number_correct = @number_correct + 1
       @right_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer)
