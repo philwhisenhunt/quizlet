@@ -1,6 +1,7 @@
 class QuizzesController < ApplicationController
   before_action :set_quiz, only: %i[ show edit update destroy build start]
   before_action :set_questions, only: %i[show build start]
+  before_action :set_number_correct
   # before_action :set_up_first_and_next_question, only: %i[show check_answer start]
   # GET /quizzes or /quizzes.json
   def index
@@ -170,6 +171,12 @@ class QuizzesController < ApplicationController
 
     def set_questions
       @questions = Question.where(quiz_id: @quiz.id)
+    end
+
+    def set_number_correct
+      if !@number_correct.present?
+        @number_correct = 0
+      end
     end
 
     def calculate_score
