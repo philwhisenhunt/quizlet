@@ -1,6 +1,7 @@
 class QuizzesController < ApplicationController
   before_action :set_quiz, only: %i[ show edit update destroy build start]
   before_action :set_questions, only: %i[show build start]
+  before_action :set_number_correct
   # before_action :set_up_first_and_next_question, only: %i[show check_answer start]
   # GET /quizzes or /quizzes.json
   def index
@@ -80,6 +81,7 @@ class QuizzesController < ApplicationController
     @questions.each do |question| 
       question.mark_as_unanswered
     end
+    @number_correct = 0
   end
 
   def build
@@ -98,6 +100,11 @@ class QuizzesController < ApplicationController
     # byebug
     @quiz = Quiz.find(params[:id])
     @question = @quiz.questions.where(answered: false).first
+
+    if @question.present?
+    else
+      redirect_to complete_path
+    end
 
   end
 
@@ -125,22 +132,28 @@ class QuizzesController < ApplicationController
 
   def handle_answer
     @quiz = Quiz.find(params[:id])
-    @attempted_answer = params[:attempted_answer]
+    @attempted_answer = params[:attempted_answer].downcase
     @question = @quiz.questions.where(answered: false).first
-    # now just needs a view
 
-    if @attempted_answer == @question.answer
-      # account for correct answer
-      # mark question as correct
-      @question.answered = true
-      format.html { redirect_to session_maker_path(@quiz), notice: "Correct! "}
-      # reload the session view (which should now pull a fresh question)
-    else
-      # somehow save the attempted answer here
+    if @question.nil?
+      redirect_to completed_path
+    end
+
+    if @attempted_answer == @question.answer.downcase
+
+      @question.update(answered: true)
       
+      respond_to do |format|
+        format.html { redirect_to session_maker_path(@quiz), notice: "Correct! "}
+        # do we need json here
+      end
+      @number_correct = @number_correct + 1
+      @right_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer)
+      @right_answer.save!
+    else
       @wrong_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer)
       @wrong_answer.save!
-      # byebug
+
       respond_to do |format|
         format.html { redirect_to session_maker_path(@quiz), notice: "False!"}
         format.json { render json: @question.errors, status: :unprocessable_entity }
@@ -149,22 +162,31 @@ class QuizzesController < ApplicationController
     end
 
   end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz
-   
       @quiz = Quiz.find(params[:id])      
     end
 
     def set_questions
       @questions = Question.where(quiz_id: @quiz.id)
-
     end
 
+    def set_number_correct
+      if !@number_correct.present?
+        @number_correct = 0
+      end
+    end
+
+    def calculate_score
+      @total_questions = @quiz.questions.count
+      @percentage_correct = @number_correct / @total_questions
+    end
 
     # Only allow a list of trusted parameters through.
     def quiz_params
-      params.require(:quiz).permit(:name, :difficulty)
+      params.require(:quiz).permit(:name, :difficulty, :quiz_id)
     end
 
     def intro_new_quiz(questions)
