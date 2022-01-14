@@ -1,0 +1,9 @@
+<%= turbo_stream_from :quizzes %>
+
+<%= turbo_frame_tag :post_form do %>
+  <%= render 'quizzes/form', quiz: @quiz %>
+<% end %>
+
+<%= turbo_frame_tag :quizzes do %>
+  <%= render @quizzes %>
+<% end %>
