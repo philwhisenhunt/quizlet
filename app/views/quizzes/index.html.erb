@@ -12,16 +12,7 @@
   </thead>
 
   <tbody>
-    <% @quizzes.each do |quiz| %>
-      <tr>
-        <td><%= quiz.name %></td>
-        <td><%= quiz.difficulty %></td>
-        <td><%= link_to 'Show', quiz %></td>
-        <td><%= link_to 'Edit', edit_quiz_path(quiz) %></td>
-        <td><%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Take Quiz', session_maker_path(quiz) %></td>
-      </tr>
-    <% end %>
+    <%= turbo_stream_from :questions %>
   </tbody>
 </table>
 
