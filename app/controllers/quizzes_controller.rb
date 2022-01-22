@@ -6,6 +6,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes or /quizzes.json
   def index
     @quizzes = Quiz.all
+    @quiz = Quiz.new
   end
 
   # GET /quizzes/1 or /quizzes/1.json
@@ -41,6 +42,7 @@ class QuizzesController < ApplicationController
         format.html { redirect_to quizzes_path, notice: "Quiz was successfully created." }
         format.json { render :show, status: :created, location: @quiz }
       else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@quiz, partial: 'quizzes/form', locals: { quiz: @quiz }) }
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @quiz.errors, status: :unprocessable_entity }
       end
@@ -87,6 +89,7 @@ class QuizzesController < ApplicationController
   def build
     # how to account for id here? 
     @quiz = Quiz.find(params[:id])
+    @question = @quiz.questions.new
   end
 
   def complete
