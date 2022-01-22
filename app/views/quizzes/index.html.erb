@@ -1,21 +1,9 @@
-<p id="notice"><%= notice %></p>
+<%= turbo_stream_from :quizzes %>
 
-<h1>Quizzes</h1>
+<%= turbo_frame_tag :quiz_form do %>
+  <%= render 'quizzes/form', quiz: @quiz %>
+<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Difficulty</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <%= turbo_stream_from :quizzes %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Quiz', new_quiz_path %>
+<%= turbo_frame_tag :quizzes do %>
+  <%= render @quizzes %>
+<% end %>
