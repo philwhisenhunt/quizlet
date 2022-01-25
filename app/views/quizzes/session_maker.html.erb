@@ -1,16 +1,17 @@
-<h1>Session Maker</h1>
+<div>
+<h1>Quiz Session</h1>
+    <p>Ok first question:</p>
+    <br>
+    <%= @question.title %>
 
-Ok first question:
-<br>
-<%= @question.title %>
+    <%= form_with(model: @attempted_answer, local: true) do |form| %>
+        <div class="field">
+            <%= form.label :attempted_answer, "Your answer:" %>
+            <%= form.text_field :attempted_answer %>
+        </div>
 
-<%= form_with(model: @attempted_answer, local: true) do |form| %>
-    <div class="field">
-        <%= form.label :attempted_answer %>
-        <%= form.text_field :attempted_answer %>
-    </div>
-
-    <div class="actions">
-        <%= form.submit "Check Answer" %>
-    </div>
-<% end %>
+        <div class="actions">
+            <%= form.submit "Check Answer" %>
+        </div>
+    <% end %>
+</div>
