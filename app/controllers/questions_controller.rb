@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
   # GET /questions or /questions.json
   def index
     @questions = Question.all
+    @question = Question.new
   end
 
   # GET /questions/1 or /questions/1.json
@@ -24,12 +25,14 @@ class QuestionsController < ApplicationController
   def create
     # byebug
     @question = Question.new(question_params)
-    @quiz = Quiz.find(question_params[:quiz_id])
+    # @quiz = Quiz.find(question_params[:quiz_id])
     respond_to do |format|
       if @question.save
-        format.html { redirect_to quiz_path(@quiz), notice: "Question was successfully created." }
+        format.html { redirect_to questions_path }
         format.json { render :show, status: :created, location: @question }
       else
+        byebug
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@question, parital: "questions/form", locals: { question: @question})}
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @question.errors, status: :unprocessable_entity }
       end
