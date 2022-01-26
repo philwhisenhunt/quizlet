@@ -14,6 +14,19 @@
  *= require_self
  */
 .entire-yield {
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; */
+  /* border: 1px solid black; */
+}
+
+.center-section {
+}
+.main-title {
+}
+
+.main-body {
   display: flex;
   justify-content: center;
   align-items: center;
