@@ -14,9 +14,49 @@
  *= require_self
  */
 .entire-yield {
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px;
-  border: 1px solid black;
+  height: 200px; */
+  /* border: 1px solid black; */
+}
+
+.center-section {
+}
+.main-title {
+}
+
+body {
+  font-family: Arial;
+  color: red;
+}
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+  background-color: #111;
+  color: white;
+}
+
+.right {
+  right: 0;
+  background-color: white;
+  color: black;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
