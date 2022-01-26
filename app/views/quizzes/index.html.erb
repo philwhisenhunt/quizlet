@@ -1,15 +1,9 @@
-<div class="quizzes-main">
-  <%= turbo_stream_from :quizzes %>
+<%= turbo_stream_from :quizzes %>
 
-  <div class="quiz-form">
-    <%= turbo_frame_tag :quiz_form do %>
-      <%= render 'quizzes/form', quiz: @quiz %>
-    <% end %>
-  </div>
-
-  <div class="quiz-roll">
-    <%= turbo_frame_tag :quizzes do %>
-      <%= render @quizzes %>
-    <% end %>
-  </div>
+<div class="split left">
+      <div class="centered">
+        <%= turbo_frame_tag :quiz_form do %>
+          <%= render 'quizzes/form', quiz: @quiz %>
+        <% end %>
+      </div>
 </div>
