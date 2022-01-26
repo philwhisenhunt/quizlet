@@ -31,5 +31,25 @@
   justify-content: center;
   align-items: center;
   height: 200px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+}
+
+.quizzes-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 100%;
+  /* border: 1px solid black; */
+}
+
+.quiz-form {
+  display: flex;
+  background-color: blue;
+  width: 100%;
+}
+
+.quiz-roll {
+  background-color: red;
+  margin: 10px;
 }
