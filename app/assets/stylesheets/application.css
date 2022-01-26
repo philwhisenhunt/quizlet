@@ -26,30 +26,35 @@
 .main-title {
 }
 
-.main-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  /* border: 1px solid black; */
+body {
+  font-family: Arial;
+  color: red;
 }
 
-.quizzes-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  width: 100%;
-  /* border: 1px solid black; */
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
 }
 
-.quiz-form {
-  display: flex;
-  background-color: blue;
-  width: 100%;
+.left {
+  left: 0;
+  background-color: #111;
 }
 
-.quiz-roll {
-  background-color: red;
-  margin: 10px;
+.right {
+  right: 0;
+  background-color: white;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
