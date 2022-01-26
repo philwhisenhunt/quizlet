@@ -44,11 +44,13 @@ body {
 .left {
   left: 0;
   background-color: #111;
+  color: white;
 }
 
 .right {
   right: 0;
   background-color: white;
+  color: black;
 }
 
 .centered {
