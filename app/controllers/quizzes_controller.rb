@@ -134,7 +134,7 @@ class QuizzesController < ApplicationController
   def handle_answer
     @attempted_answer = params[:attempted_answer].downcase
     @attempted_answer = @attempted_answer.downcase
-    @correct_answer = @question.answered
+    @correct_answer = @question.answer
     @correct_answer = @correct_answer.downcase
 
     if @attempted_answer == @correct_answer
