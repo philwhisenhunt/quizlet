@@ -1,8 +1,6 @@
 class QuizzesController < ApplicationController
-  before_action :set_quiz, only: %i[ show edit update destroy build start]
-  before_action :set_questions, only: %i[show build start]
-  before_action :set_number_correct
-  # before_action :set_up_first_and_next_question, only: %i[show check_answer start]
+  before_action :setup_quiz, only: %i[session_maker handle_answer]
+
   # GET /quizzes or /quizzes.json
   def index
     @quizzes = Quiz.all
@@ -98,14 +96,13 @@ class QuizzesController < ApplicationController
   end
 
   def session_maker
-    # Render a view that includes a question here
-    # On next load, swap in the correct question
-    # byebug
-    @quiz = Quiz.find(params[:id])
-    @question = @quiz.questions.where(answered: false).first
+    # @quiz = Quiz.find(params[:id])
+    # @questions = @quiz.questions.to_a
+    
 
-    if @question.present?
-    else
+    unless @question.present?
+      
+   
       redirect_to complete_path
     end
 
@@ -134,31 +131,34 @@ class QuizzesController < ApplicationController
   end
 
   def handle_answer
-    @quiz = Quiz.find(params[:id])
+    # @quiz = Quiz.find(params[:id])
     @attempted_answer = params[:attempted_answer].downcase
-    @question = @quiz.questions.where(answered: false).first
+    # @question = @quiz.questions.where(answered: false).first
 
-    if @question.nil?
-      redirect_to completed_path
-    end
-
+    # if @question.nil?
+    #   redirect_to completed_path
+    # end
+# byebug # what is @questions.count
     if @attempted_answer == @question.answer.downcase
 
-      @question.update(answered: true)
-      
+      @correct_answer_count += 1
+      @questions.shift
+      # byebug # what is @questions.count
+      session[:questions] = @questions 
+      # byebug
       respond_to do |format|
         format.html { redirect_to session_maker_path(@quiz), notice: "Correct! "}
         # do we need json here
       end
-      @number_correct = @number_correct + 1
-      @right_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer)
-      @right_answer.save!
+      # @number_correct = @number_correct + 1
+      # @right_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer)
+      # @right_answer.save!
     else
-      @wrong_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer)
-      @wrong_answer.save!
+      # @wrong_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer)
+      # @wrong_answer.save!
 
       respond_to do |format|
-        format.html { redirect_to session_maker_path(@quiz), notice: "False!"}
+        format.html { redirect_to session_maker_path(@quiz), notice: "Wrong!"}
         format.json { render json: @question.errors, status: :unprocessable_entity }
       end
       
@@ -168,8 +168,26 @@ class QuizzesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_quiz
-      @quiz = Quiz.find(params[:id])      
+    def setup_quiz
+      # byebug
+      # @first_value = params[:f_name]
+      # session[:passed_variable] = @first_value
+      
+      
+
+
+      @quiz ||= Quiz.find(params[:id])
+     
+      @questions = session[:questions]
+    
+      if @questions.present?  
+        byebug # what format is questions?
+        @question = Question.find(@questions[0]["id"])
+      else
+        @questions = @quiz.questions.to_a 
+        @question = @questions.first
+      end
+      @correct_answer_count ||= 0
     end
 
     def set_questions
