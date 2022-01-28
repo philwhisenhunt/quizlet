@@ -61,7 +61,7 @@ body {
   text-align: center;
 }
 
-input[text="text"] {
+input[type="text"] {
   width: 50%;
   box-sizing: border-box;
   border: 2px solid #ccc;
