@@ -23,12 +23,13 @@ class QuestionsController < ApplicationController
 
   # POST /questions or /questions.json
   def create
-    # byebug
+    # byebug 
+    @quiz = Quiz.find(question_params[:quiz_id])
     @question = Question.new(question_params)
-    # @quiz = Quiz.find(question_params[:quiz_id])
+    
     respond_to do |format|
       if @question.save
-        format.html { redirect_to questions_path }
+        format.html { redirect_to build_quiz_path(@quiz) }
         format.json { render :show, status: :created, location: @question }
       else
         byebug
