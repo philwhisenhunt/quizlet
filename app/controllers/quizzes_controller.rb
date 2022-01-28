@@ -1,5 +1,5 @@
 class QuizzesController < ApplicationController
-  before_action :setup_quiz, only: %i[session_maker handle_answer index show edit update destroy build]
+  before_action :setup_quiz, only: %i[session_maker handle_answer show edit update destroy build]
 
   # GET /quizzes or /quizzes.json
   def index
