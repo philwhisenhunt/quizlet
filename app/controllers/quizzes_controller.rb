@@ -98,10 +98,10 @@ class QuizzesController < ApplicationController
   def session_maker
     # @quiz = Quiz.find(params[:id])
     # @questions = @quiz.questions.to_a
-    correct_answer = @question.answer.to_s
-    puts "========================"
-    puts correct_answer
-    puts "========================"
+    # correct_answer = @question.answer.to_s
+    # puts "========================"
+    # puts correct_answer
+    # puts "========================"
     # system("say #{correct_answer}")
     unless @question.present?
       redirect_to complete_path
