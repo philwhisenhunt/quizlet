@@ -102,7 +102,7 @@ class QuizzesController < ApplicationController
     puts "========================"
     puts correct_answer
     puts "========================"
-    system("say #{correct_answer}")
+    # system("say #{correct_answer}")
     unless @question.present?
       redirect_to complete_path
     end
@@ -136,11 +136,19 @@ class QuizzesController < ApplicationController
     if @attempted_answer == @question.answer.downcase
       @correct_answer_count += 1
       @questions.shift
+      system("say #{@questions.count.to_s}")
+      if @questions.count == 0
+        respond_to do |format|
+          format.html { redirect_to complete_path, notice: "Correct! "}
+        end
+        
+      else
       session[:questions] = @questions 
    
       respond_to do |format|
         format.html { redirect_to session_maker_path(@quiz), notice: "Correct! "}
       end
+    end
     else
       wrong_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer)
       wrong_answer.save!
