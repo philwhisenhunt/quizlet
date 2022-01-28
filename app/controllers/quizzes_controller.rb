@@ -133,10 +133,16 @@ class QuizzesController < ApplicationController
 
   def handle_answer
     @attempted_answer = params[:attempted_answer].downcase
-    if @attempted_answer == @question.answer.downcase
+    @attempted_answer = @attempted_answer.downcase
+    @correct_answer = @question.answered
+    @correct_answer = @correct_answer.downcase
+
+    if @attempted_answer == @correct_answer
+      right_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer, correct_answer: @correct_answer)
+      right_answer.save!
       @correct_answer_count += 1
       @questions.shift
-      system("say #{@questions.count.to_s}")
+      # system("say #{@questions.count.to_s}")
       if @questions.count == 0
         respond_to do |format|
           format.html { redirect_to complete_path, notice: "Correct! "}
@@ -150,7 +156,7 @@ class QuizzesController < ApplicationController
       end
     end
     else
-      wrong_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer)
+      wrong_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer, correct_answer: @correct_answer)
       wrong_answer.save!
 
       respond_to do |format|
