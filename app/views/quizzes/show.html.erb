@@ -1,5 +1,11 @@
 Quiz Name: <%= @quiz.name %>
 <hr>
+<div>
+  <%= link_to "Edit this quiz", edit_quiz_path(@quiz) %> |
+  <%= link_to "Back to quizzes", quizzes_path %>
+  <%= link_to "Destroy this quiz", @quiz, method: :delete %>
+</div>
+<hr>
 Here are all the questions that will be on the quiz:
 
 <% @quiz.questions.each do |question| %>
@@ -10,3 +16,4 @@ Here are all the questions that will be on the quiz:
   <hr>
   <br>
 <% end %>
+
