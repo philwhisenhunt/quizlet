@@ -98,11 +98,12 @@ class QuizzesController < ApplicationController
   def session_maker
     # @quiz = Quiz.find(params[:id])
     # @questions = @quiz.questions.to_a
-    
-
+    correct_answer = @question.answer.to_s
+    puts "========================"
+    puts correct_answer
+    puts "========================"
+    system("say #{correct_answer}")
     unless @question.present?
-      
-   
       redirect_to complete_path
     end
 
@@ -131,37 +132,23 @@ class QuizzesController < ApplicationController
   end
 
   def handle_answer
-    # @quiz = Quiz.find(params[:id])
     @attempted_answer = params[:attempted_answer].downcase
-    # @question = @quiz.questions.where(answered: false).first
-
-    # if @question.nil?
-    #   redirect_to completed_path
-    # end
-# byebug # what is @questions.count
     if @attempted_answer == @question.answer.downcase
-
       @correct_answer_count += 1
       @questions.shift
-      # byebug # what is @questions.count
       session[:questions] = @questions 
-      # byebug
+   
       respond_to do |format|
         format.html { redirect_to session_maker_path(@quiz), notice: "Correct! "}
-        # do we need json here
       end
-      # @number_correct = @number_correct + 1
-      # @right_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer)
-      # @right_answer.save!
     else
-      # @wrong_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer)
-      # @wrong_answer.save!
+      wrong_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer)
+      wrong_answer.save!
 
       respond_to do |format|
         format.html { redirect_to session_maker_path(@quiz), notice: "Wrong!"}
         format.json { render json: @question.errors, status: :unprocessable_entity }
       end
-      
     end
 
   end
@@ -169,19 +156,10 @@ class QuizzesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def setup_quiz
-      # byebug
-      # @first_value = params[:f_name]
-      # session[:passed_variable] = @first_value
-      
-      
-
-
       @quiz ||= Quiz.find(params[:id])
-     
       @questions = session[:questions]
     
       if @questions.present?  
-        byebug # what format is questions?
         @question = Question.find(@questions[0]["id"])
       else
         @questions = @quiz.questions.to_a 
