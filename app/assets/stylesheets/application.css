@@ -61,6 +61,10 @@ body {
   text-align: center;
 }
 
+.left-text {
+  text-align: left;
+}
+
 input[type="text"] {
   width: 50%;
   box-sizing: border-box;
