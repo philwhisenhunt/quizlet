@@ -10,23 +10,24 @@
       </ul>
     </div>
   <% end %>
+  <div class = "left-text">
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+    <div class="field">
+      <%= form.label :answer %>
+      <%= form.text_field :answer %>
+    </div>
 
-  <div class="field">
-    <%= form.label :answer %>
-    <%= form.text_field :answer %>
-  </div>
+    <div class="field">
+      <%= form.label :quiz_id, "Quiz ID" %>
+      <%= form.text_field :quiz_id %>
+    </div>
 
-  <div class="field">
-    <%= form.label :quiz_id, "Quiz ID" %>
-    <%= form.text_field :quiz_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
   </div>
 <% end %>
