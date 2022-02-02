@@ -105,6 +105,11 @@ a.button-link {
   cursor: pointer;
   width: 100%;
 }
+
+.white-submit-button input[type="submit"] {
+  background-color: white;
+  color: #111;
+}
 /* 
 .vert-split {
   height: 50%;
