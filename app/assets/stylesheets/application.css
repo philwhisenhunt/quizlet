@@ -66,7 +66,7 @@ body {
 }
 
 input[type="text"] {
-  width: 50%;
+  width: 95%;
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
@@ -109,6 +109,7 @@ a.button-link {
 .white-submit-button input[type="submit"] {
   background-color: white;
   color: #111;
+  font-size: 16px;
 }
 /* 
 .vert-split {
@@ -132,3 +133,16 @@ a.button-link {
   background-color: white;
   color: black;
 } */
+
+/* .rounded-box {
+  border-radius: 25px;
+  background: red;
+  padding: 20px;
+  width: 100%;
+  height: 150px;
+  margin: 10px;
+} */
+
+.rounded-box {
+  margin: 10px;
+}
