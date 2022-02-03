@@ -3,7 +3,7 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes or /quizzes.json
   def index
-    @quizzes = Quiz.all
+    @quizzes = Quiz.all.order(created_at: :desc)
     @quiz = Quiz.new
   end
 
