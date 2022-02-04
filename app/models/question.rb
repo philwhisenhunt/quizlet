@@ -1,6 +1,5 @@
 class Question < ApplicationRecord
     
-    # belongs_to :quizzes_question
     has_many :quizzes_questions
     has_many :quizzes, through: :quizzes_question
 

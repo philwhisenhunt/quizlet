@@ -32,7 +32,7 @@ class QuestionsController < ApplicationController
         format.html { redirect_to build_quiz_path(@quiz) }
         format.json { render :show, status: :created, location: @question }
       else
-        byebug
+    
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@question, parital: "questions/form", locals: { question: @question})}
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @question.errors, status: :unprocessable_entity }
