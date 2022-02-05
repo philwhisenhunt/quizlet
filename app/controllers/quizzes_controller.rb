@@ -69,13 +69,6 @@ class QuizzesController < ApplicationController
     end
   end
 
-  def start
-  # byebug
-    @questions = Question.all
-    # byebug
-    @display_question = @questions.where(answered: false).first
-  end
-
   def reset
     @questions = Question.all
     @questions.each do |question| 
@@ -85,8 +78,7 @@ class QuizzesController < ApplicationController
   end
 
   def build
-    # how to account for id here? 
-    @quiz = Quiz.find(params[:id])
+   
     @question = @quiz.questions.new
   end
 
@@ -96,13 +88,7 @@ class QuizzesController < ApplicationController
   end
 
   def session_maker
-    # @quiz = Quiz.find(params[:id])
-    # @questions = @quiz.questions.to_a
-    # correct_answer = @question.answer.to_s
-    # puts "========================"
-    # puts correct_answer
-    # puts "========================"
-    # system("say #{correct_answer}")
+  
     unless @question.present?
       redirect_to complete_path
     end
