@@ -84,7 +84,7 @@ class QuizzesController < ApplicationController
 
   def complete
     #grab users score from that round
-    @score = 12 # placeholder for now
+    @correct_answer_count
   end
 
   def session_maker
