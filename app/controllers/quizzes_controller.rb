@@ -83,8 +83,7 @@ class QuizzesController < ApplicationController
   end
 
   def complete
-    #grab users score from that round
-    @correct_answer_count
+    @percentage_correct =  @correct_answer_count.to_f / @number_of_questions_in_quiz
   end
 
   def session_maker
@@ -166,6 +165,7 @@ class QuizzesController < ApplicationController
         @question = @questions.first
       end
       @correct_answer_count ||= 0
+      @number_of_questions_in_quiz  ||= 0
     end
 
     def set_questions
