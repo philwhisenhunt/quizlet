@@ -134,19 +134,28 @@ class QuizzesController < ApplicationController
         end
         
       else
-      session[:questions] = @questions 
-   
-      respond_to do |format|
-        format.html { redirect_to session_maker_path(@quiz), notice: "Correct! "}
+        session[:questions] = @questions 
+    
+        respond_to do |format|
+          format.html { redirect_to session_maker_path(@quiz), notice: "Correct! "}
+        end
       end
-    end
     else
+      byebug
       wrong_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer, correct_answer: @correct_answer)
       wrong_answer.save!
-
-      respond_to do |format|
-        format.html { redirect_to session_maker_path(@quiz), notice: "Wrong!"}
-        format.json { render json: @question.errors, status: :unprocessable_entity }
+      @questions.shift
+      if @questions.count == 0
+        respond_to do |format|
+          format.html { redirect_to complete_path, notice: "Wrong! "}
+        end
+        
+      else
+        session[:questions] = @questions 
+        respond_to do |format|
+          format.html { redirect_to session_maker_path(@quiz), notice: "Wrong!"}
+          format.json { render json: @question.errors, status: :unprocessable_entity }
+        end
       end
     end
 
@@ -156,7 +165,7 @@ class QuizzesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def setup_quiz
       @quiz ||= Quiz.find(params[:id])
-      @questions = session[:questions]
+      @questions ||= session[:questions]
     
       if @questions.present?  
         @question = Question.find(@questions[0]["id"])
