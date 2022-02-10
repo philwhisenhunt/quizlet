@@ -141,15 +141,14 @@ class QuizzesController < ApplicationController
         end
       end
     else
-      byebug
       wrong_answer = AttemptedAnswer.new(question_id: @question.id, attempted_answer: @attempted_answer, correct_answer: @correct_answer)
       wrong_answer.save!
       @questions.shift
       if @questions.count == 0
         respond_to do |format|
           format.html { redirect_to complete_path, notice: "Wrong! "}
-        end
-        
+          # format.json
+        end  
       else
         session[:questions] = @questions 
         respond_to do |format|
