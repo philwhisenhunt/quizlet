@@ -147,7 +147,8 @@ class QuizzesController < ApplicationController
       if @questions.count == 0
         respond_to do |format|
           format.html { redirect_to complete_path, notice: "Wrong! "}
-          # format.json
+          format.json { render :show, status: :ok, location: @quiz }
+          format.json { render :complete, status: :ok, location: @quiz }
         end  
       else
         session[:questions] = @questions 
