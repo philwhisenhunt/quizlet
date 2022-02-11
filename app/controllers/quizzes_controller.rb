@@ -40,6 +40,9 @@ class QuizzesController < ApplicationController
         format.html { redirect_to quizzes_path, notice: "Quiz was successfully created." }
         format.json { render :show, status: :created, location: @quiz }
       else
+        # system("say here")
+        # How do we still show the index view, but with a blank partial?
+
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@quiz, partial: 'quizzes/form', locals: { quiz: @quiz }) }
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @quiz.errors, status: :unprocessable_entity }
