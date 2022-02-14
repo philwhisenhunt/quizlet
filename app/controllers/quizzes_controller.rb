@@ -42,9 +42,9 @@ class QuizzesController < ApplicationController
       else
         # system("say here")
         # How do we still show the index view, but with a blank partial?
-
+# Why are we receiving html here?
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@quiz, partial: 'quizzes/form', locals: { quiz: @quiz }) }
-        # format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @quiz.errors, status: :unprocessable_entity }
       end
     end
