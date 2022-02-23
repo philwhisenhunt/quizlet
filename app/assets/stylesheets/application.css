@@ -20,6 +20,10 @@
   height: 200px; */
   /* border: 1px solid black; */
 }
+.rendered-content {
+  margin: 1px;
+  background-color: blue;
+}
 
 .center-section {
 }
