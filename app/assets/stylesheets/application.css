@@ -23,6 +23,7 @@
 .rendered-content {
   margin: 1px;
   background-color: blue;
+  font-family: Arial;
 }
 
 .center-section {
