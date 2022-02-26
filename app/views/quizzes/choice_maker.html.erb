@@ -6,10 +6,11 @@
 <div class="split right">
   <div class="centered">
     <%= form_with(model: @attempted_answer, local: true) do |form| %>
-  
+    <div class="option-holder">
         <div class="actions">
             <%= form.submit "Check Answer" %>
         </div>
+    </div>
     <% end %>
   </div>
 </div>
