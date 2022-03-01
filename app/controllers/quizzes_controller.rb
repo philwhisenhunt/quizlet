@@ -71,7 +71,8 @@ class QuizzesController < ApplicationController
   end
 
   def reset
-    @questions = Question.all
+    @quiz = Quiz.find(params[:id])
+    @questions = @quiz.questions
     @questions.each do |question| 
       question.mark_as_unanswered
     end

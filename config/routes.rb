@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'home/index'
   root :to => "home#index"
   post "questions/:id", to: "questions#check_answer"
-  get 'reset', to: "quizzes#reset"
+  get 'quizzes/:id/reset', to: "quizzes#reset", as: "reset"
   get "quizzes/:id/build", to: "quizzes#build", as: "build_quiz"
   get "quizzes/:id/complete", to: "quizzes#complete", as: "complete"
   get "quizzes/:id/session_maker", to: "quizzes#session_maker", as: "session_maker"
