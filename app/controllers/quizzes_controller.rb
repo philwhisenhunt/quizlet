@@ -28,7 +28,7 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/1/edit
   def edit
-  #  byebug
+  
   end
 
   # POST /quizzes or /quizzes.json
@@ -80,7 +80,6 @@ class QuizzesController < ApplicationController
   end
 
   def build
-   
     @question = @quiz.questions.new
   end
 
@@ -129,7 +128,7 @@ class QuizzesController < ApplicationController
       right_answer.save!
       @correct_answer_count += 1
       @questions.shift
-      # system("say #{@questions.count.to_s}")
+
       if @questions.count == 0
         respond_to do |format|
           format.html { redirect_to complete_path, notice: "Correct! "}
@@ -163,7 +162,6 @@ class QuizzesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def setup_quiz
       @quiz ||= Quiz.find(params[:id])
       @questions ||= session[:questions]
