@@ -3,6 +3,7 @@
 <%= turbo_frame_tag :question_form do %>
   <%= render 'add_question_to_quiz', question: @question %>
 <% end %>
+<%= link_to "Take this quiz", '#' %>
 
 <%= turbo_frame_tag :questions do %>
   <%= render @question %>
