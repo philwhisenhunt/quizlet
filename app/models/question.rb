@@ -3,6 +3,7 @@ class Question < ApplicationRecord
     has_many :quizzes_questions
     has_many :quizzes, through: :quizzes_question
     validates_presence_of :title
+    validates_presence_of :answer
 
     after_create_commit { broadcast_prepend_to :questions}
     def check_answer(attempt)
