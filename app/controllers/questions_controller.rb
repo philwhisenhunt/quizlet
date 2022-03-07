@@ -63,24 +63,22 @@ class QuestionsController < ApplicationController
   end
 
   def check_answer
-    # byebug # are we here? 
+   
     attempt = params[:question][:attempt]
     correct_answer = @display_question.correct_answer
-    attempted_answer = AttemptedAnswer.new(attempted_answer: attempt)
-    # byebug
+
     if @display_question.check_answer(attempt) == true
-      # byebug 
+     
       attempted_answer.correct_answer = true
       @display_question.mark_as_answered
       respond_to do |format|
         if @queued_question 
           attempted_answer.save
-# byebug
-# Start path needs to change
+
           format.html { redirect_to start_path, notice: "Correct!" }
           format.json { head :no_content }
-          # byebug
-          byebug #redirect to end of path
+          
+         
         else
           attempted_answer.save
 
