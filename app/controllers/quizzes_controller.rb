@@ -106,11 +106,8 @@ class QuizzesController < ApplicationController
   
     @question.answer = params[:answer]
 
-    # And now prep for receiving a question (for POST requests)
     if @question.save
-    # add in redirect
-      format.html { redirect_to quiz_path(@quiz), notice: "Question was successfully created under #{@quiz.name}"}
-      # format.json {render :show, status: :ok, location: @quiz}
+      format.html { redirect_to quiz_path(@quiz), notice: "Question was successfully created under #{@quiz.name}"}  
     else
       format.html {redirect_to quiz_path(@quiz), notice: "Question was not saved." }
      
