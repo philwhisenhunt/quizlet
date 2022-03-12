@@ -23,7 +23,6 @@ class QuestionsController < ApplicationController
 
   # POST /questions or /questions.json
   def create
-    # byebug 
     @quiz = Quiz.find(question_params[:quiz_id])
     @question = Question.new(question_params)
     
