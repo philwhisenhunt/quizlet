@@ -188,7 +188,6 @@ class QuizzesController < ApplicationController
       @percentage_correct = @number_correct / @total_questions
     end
 
-    # Only allow a list of trusted parameters through.
     def quiz_params
       params.require(:quiz).permit(:name, :difficulty, :quiz_id)
     end
