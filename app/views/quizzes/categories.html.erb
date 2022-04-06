@@ -4,6 +4,8 @@
 # each category has a box
 
 <% @categories.each do |category| %>
-    <%= category.name %>
-    <%= category.quantity %>
+    <div>
+        <%= category.name %>
+        <%= category.quantity %>
+    <div>
 <% end %>
