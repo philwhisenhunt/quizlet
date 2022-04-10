@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_13_020329) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_04_08_032800) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.integer "record_id", null: false
     t.integer "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -30,7 +29,7 @@ ActiveRecord::Schema.define(version: 2022_01_13_020329) do
     t.string "service_name", null: false
     t.integer "byte_size", null: false
     t.string "checksum"
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -43,16 +42,23 @@ ActiveRecord::Schema.define(version: 2022_01_13_020329) do
   create_table "attempted_answers", force: :cascade do |t|
     t.string "attempted_answer"
     t.boolean "correct_answer"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "question_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "questions", force: :cascade do |t|
     t.string "title", null: false
     t.string "answer", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean "answered"
     t.integer "quiz_id"
     t.index ["quiz_id"], name: "index_questions_on_quiz_id"
@@ -61,15 +67,15 @@ ActiveRecord::Schema.define(version: 2022_01_13_020329) do
   create_table "quizzes", force: :cascade do |t|
     t.string "name"
     t.string "difficulty"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "quizzes_questions", force: :cascade do |t|
     t.integer "quiz_id", null: false
     t.integer "question_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_quizzes_questions_on_question_id"
     t.index ["quiz_id"], name: "index_quizzes_questions_on_quiz_id"
   end
