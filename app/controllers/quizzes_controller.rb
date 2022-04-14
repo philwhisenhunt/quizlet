@@ -158,6 +158,10 @@ class QuizzesController < ApplicationController
 
   end
 
+  def pick_random_quiz
+    @random_quiz = Quiz.where(include_in_random: true).sample
+  end
+
   private
     def setup_quiz
       @quiz ||= Quiz.find(params[:id])
