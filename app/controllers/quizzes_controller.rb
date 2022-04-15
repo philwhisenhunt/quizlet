@@ -160,6 +160,7 @@ class QuizzesController < ApplicationController
 
   def pick_random_quiz
     @random_quiz = Quiz.where(include_in_random: true).sample
+    redirect_to quiz_path(@random_quiz)
   end
 
   private
