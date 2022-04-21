@@ -159,7 +159,7 @@ class QuizzesController < ApplicationController
   end
 
   def pick_random_quiz
-    @random_quiz = Quiz.sample
+    @random_quiz = Quiz.all.sample
     # @random_quiz = Quiz.where(include_in_random: true).sample
     redirect_to quiz_path(@random_quiz)
   end
