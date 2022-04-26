@@ -111,6 +111,10 @@ a.button-link {
   width: 100%;
 }
 
+a.reg-button {
+  background-color: #111;
+}
+
 .white-submit-button input[type="submit"] {
   background-color: white;
   color: #111;
