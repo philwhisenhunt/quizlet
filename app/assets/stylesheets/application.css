@@ -121,6 +121,10 @@ a.reg-button {
   font-size: 16px;
 }
 
+.main-body {
+  background-color: yellowgreen;
+}
+
 /* 
 .vert-split {
   height: 50%;
